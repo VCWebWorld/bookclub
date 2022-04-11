@@ -45,7 +45,7 @@ public class MemBookDao implements BookDao {
 	} //end of list()
 
     /**
-     *find(String) override method that returns list of books.
+     *find(String) override method that returns a book object matching given key.
      *@return Book
      */
 	@Override

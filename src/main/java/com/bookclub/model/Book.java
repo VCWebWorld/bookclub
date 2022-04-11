@@ -2,7 +2,7 @@
     Krasso, R., (2021). CIS 505 Intermediate Java Programming. Bellevue University, all
 	rights reserved. 
     Modified by V. Chukkaluru 2022. 
-    Purpose: Book class provides template for an object represting book for Bookclub Spring Boot application.
+    Purpose: Book class provides template for an object representing book for Bookclub Spring Boot application.
     
 */
 package com.bookclub.model;
@@ -65,7 +65,7 @@ public class Book {
 		return isbn; //return isbn property of the Book
 	}
 	/**
-	 * Setter methhod for isbn of Book object
+	 * Setter method for isbn of Book object
 	 * @param String
 	 **/
 	public void setIsbn(String isbn) {
