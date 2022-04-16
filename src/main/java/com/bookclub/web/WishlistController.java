@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bookclub.model.WishlistItem;
-import com.bookclub.service.impl.MemWishlistDao;
+import com.bookclub.service.dao.WishlistDao;
+import com.bookclub.service.impl.MongoWishlistDao;
 /**
  * WishlistController class 
  **/
 @Controller
 @RequestMapping("/wishlist") //maps web requests with /wishlist path to Spring Controller methods.
 public class WishlistController {
+	
+	WishlistDao wishlistDao = new MongoWishlistDao();
 
 	/**
 	 * default constructor
@@ -41,9 +45,7 @@ public class WishlistController {
      */
     @RequestMapping(method = RequestMethod.GET) // maps base web request to showWishList method.
     public String showWishlist(Model model) {
-    
-    	MemWishlistDao wishlistDao = new MemWishlistDao(); //create MemWishlistDao object
-    	
+        	
     	List<WishlistItem> wishlist = wishlistDao.list(); //map book list returned from bookDao.list() to local books list
     	
     	model.addAttribute("wishlist", wishlist); //assign wishlist object to model attribute with key "wishlist"
@@ -81,9 +83,21 @@ public class WishlistController {
     	   return "wishlist/new"; 
     	}
     	
+    	wishlistDao.add(wishlistItem); //add the wishlistItem record to MongoDB
+    	
     	return "redirect:/wishlist";
     	
     	
     } //end addWishListItem()
+    
+    /**
+     * Setter method to set wislistDao property
+     * @param wishlistDao
+     */
+    @Autowired
+    private void setWishlistDao(WishlistDao wishlistDao) {
+    	this.wishlistDao = wishlistDao;
+    
+    }
 
 } //end of class WishlistController

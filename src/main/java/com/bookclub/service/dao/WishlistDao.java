@@ -8,12 +8,12 @@
 package com.bookclub.service.dao;
 
 import com.bookclub.model.WishlistItem;
-import com.bookclub.service.GenericDao;
+import com.bookclub.service.GenericCrudDao;
 
 /**
  *  An Data Access Object interface for WishlistItem extending GenericDao 
  *
  */
-public interface WishlistDao extends GenericDao<WishlistItem, String> {
+public interface WishlistDao extends GenericCrudDao<WishlistItem, String> {
 
 }
