@@ -29,34 +29,48 @@ public class MongoWishlistDao implements WishlistDao {
 	private MongoTemplate mongoTemplate;
 
 	/**
-	 * 
+	 * Default constructor
 	 */
 	public MongoWishlistDao() {
 		// TODO Auto-generated constructor stub
-	}
-
+	} //end constructor
+    /**
+     * Override method to add Wishlistitem into db.
+     */
 	@Override
 	public void add(WishlistItem entity) {
-		mongoTemplate.save(entity);
-	}
+		mongoTemplate.save(entity); //save Wishlistitem into db
+	} //end add()
 
+	/**
+	 * Override method to update WishlistItem 
+	 */
 	@Override
 	public void update(WishlistItem entity) {
 		// TODO Auto-generated method stub
 		
 	}
-
+    /**
+     * Override method to remove Wishlistitem from db
+     * @return boolean
+     */
 	@Override
 	public boolean remove(WishlistItem entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+    /**
+     * Override method that returns list of Wishlistitems from db
+     * @return List<WishlistItem>
+     */
 	@Override
 	public List<WishlistItem> list() {
 		return mongoTemplate.findAll(WishlistItem.class);
 	}
-
+    /**
+     * Override method to find WishlistItem from db matching key
+     * @return WishlistItem
+     */
 	@Override
 	public WishlistItem find(String Key) {
 		// TODO Auto-generated method stub

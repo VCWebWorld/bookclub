@@ -70,7 +70,7 @@ public class WishlistController {
      * 
      * @param wishlistItem
      * @param bindingResults
-     * @return
+     * @return String
      */
     @RequestMapping( method = RequestMethod.POST)
     public String addWishlistItem ( @Valid WishlistItem wishlistItem, BindingResult bindingResults) {
@@ -96,8 +96,8 @@ public class WishlistController {
      */
     @Autowired
     private void setWishlistDao(WishlistDao wishlistDao) {
-    	this.wishlistDao = wishlistDao;
+    	this.wishlistDao = wishlistDao; 
     
-    }
+    } // end SetWishlistDao
 
 } //end of class WishlistController

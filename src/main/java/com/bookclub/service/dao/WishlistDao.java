@@ -11,7 +11,7 @@ import com.bookclub.model.WishlistItem;
 import com.bookclub.service.GenericCrudDao;
 
 /**
- *  An Data Access Object interface for WishlistItem extending GenericDao 
+ *  An Data Access Object interface for WishlistItem extending GenericCrudDao 
  *
  */
 public interface WishlistDao extends GenericCrudDao<WishlistItem, String> {
