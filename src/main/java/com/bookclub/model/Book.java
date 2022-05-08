@@ -7,8 +7,6 @@
 */
 package com.bookclub.model;
 
-import java.util.List;
-
 /**
  * This is a class to represent a book
  *
@@ -18,10 +16,8 @@ public class Book {
 	private String isbn; //Stores ISBN of the Book
 	private String title; // Stores Book title 
 	private String description; //Stores Book description
+	private String infoUrl; //Stores infoUrl
 	private int numOfPages; //Stores number of Pages in Book
-	private List<String> authors; //Stores list of authors of the Book
-	
-	
 
 	/**
 	 * Default constructor 
@@ -36,17 +32,29 @@ public class Book {
 	 * @param title
 	 * @param description
 	 * @param numOfPages
-	 * @param authors
 	 **/
-	public Book( String isbn, String title, String description, int numOfPages, List<String> authors ) {
+	public Book( String isbn, String title, String description, String infoUrl, int numOfPages ) {
 		
 		this.isbn = isbn;
 		this.title = title;
 		this.description = description;
+		this.infoUrl = infoUrl;
 		this.numOfPages = numOfPages;
-		this.authors = authors;
+
 	}
 	
+    /**
+     * 
+     * @param isbn
+     * @param title
+     * @param infoUrl
+     */
+	public Book(String isbn, String title, String infoUrl) {
+		
+        this.isbn = isbn;
+        this.title = title;
+        this.infoUrl = infoUrl;
+	}
 
 	/**
 	 * toString method which returns String representation of Book object
@@ -54,8 +62,8 @@ public class Book {
 	 **/
 	@Override
 	public String toString() {
-		return "Book {isbn=<" + isbn + ">, title=<" + title + ">, description=<" + description + ">, numOfPages=<" + numOfPages
-				+ ">, authors=<" + authors + ">}";
+		return "Book {isbn=<" + isbn + ">, title=<" + title + ">, description=<" + description + ">, infoUrl=<" + infoUrl + ">, numOfPages=<" + numOfPages
+				+ ">}";
 	}
 	/**
 	 * Getter method for isbn of Book object
@@ -98,6 +106,21 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description; //set description property of the Book
 	}
+	/**
+	 * Getter method for infoUrl of the Book object
+	 * @return String
+	 **/
+	public String getInfoUrl() {
+		return infoUrl; //return infoUrl property of the Book
+	}
+	/**
+	 * Setter method for infoUrl of the Book object
+	 * @param String
+	 **/
+	public void setInfoUrl(String infoUrl) {
+		this.infoUrl = infoUrl; //set infoUrl property of the Book
+	}
+	/**
 	/** Getter method for numOfPages of Book object
 	 * @return int
 	 **/	
@@ -105,7 +128,7 @@ public class Book {
 		return numOfPages; //return numOfPages property of the Book
 	}
 	/**
-	 * Setter methhod for numOfPages of Book object
+	 * Setter method for numOfPages of Book object
 	 * @param int
 	 */
 	public void setNumOfPages(int numOfPages) {
@@ -114,16 +137,17 @@ public class Book {
 	/** Getter method for authors of Book object
 	 * @return List<string>
 	 **/
-	public List<String> getAuthors() {
+	/*public List<String> getAuthors() {
 		return authors; //return authors property of the Book
-	}
+	} */
 	/**
 	 * Setter methhod for authors of Book object
 	 * @param List<String>
 	 */
-	public void setAuthors(List<String> authors) {
+	/*public void setAuthors(List<String> authors) {
 		this.authors = authors; //set authors property of the Book
-	}
+	}*/
+	
 	
 	
 } //end of Book class

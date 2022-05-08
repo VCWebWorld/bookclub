@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bookclub.model.Book;
-import com.bookclub.service.impl.MemBookDao;
+import com.bookclub.service.impl.RestBookDao;
 
 /**
  * HomeController class 
@@ -36,7 +36,7 @@ public class HomeController
     @RequestMapping(method = RequestMethod.GET) // maps base web request to showHome method.
     public String showHome(Model model, String attributeName)
     {
-    	MemBookDao bookDao = new MemBookDao(); //create MemoBookDao object
+    	RestBookDao bookDao = new RestBookDao(); //create MemoBookDao object
     	List<Book> books = bookDao.list(); //map book list returned from bookDao.list() to local books list
     	
     	for (Book book : books) { //iterate through books list
@@ -76,14 +76,13 @@ public class HomeController
      * @param model
      * @return String
      */
-    
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String getMonthlyBook(@PathVariable("id") String id, Model model) {
     	
     	String isbn = id;
     	System.out.println(id);
     	
-    	MemBookDao bookDao = new MemBookDao();
+    	RestBookDao bookDao = new RestBookDao(); 
     	Book book = bookDao.find(isbn);
     	
     	System.out.println(book.toString());

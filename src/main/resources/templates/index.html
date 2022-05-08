@@ -20,13 +20,12 @@
                     <p class="lead text-muted">
                         Welcome to the Book Club app, your "one stop
                         shop" for all of your book club needs.  Below you will find a list of
-                        this months top 10 favorite books.  Select the book to see it's details.
+                        this months top 10 favorite books.  Select a book to see it's details.
                     </p>
                 </div>
             </div>
         </section>
-        
-        
+
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -36,17 +35,15 @@
                                 <p class="card-text">
                                     <span th:text="${book.getTitle()}"></span>
                                     <br />
-                                    <small class="text-muted"><em th:text="${book.getDescription()}"></em></small>
+                                    <small class="text-muted">
+                                        <em th:text="${book.getIsbn()}"></em>
+                                    </small>
                                 </p>
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <ul th:each="author : ${book.getAuthors()}" style="list-style-type: none;">
-                                        <li>
-                                            <small class="text-muted" th:text="${author}"></small>
-                                        </li>
-                                    </ul>
                                     <div class="btn-group">
                                         <a href="#" th:href="@{/{id}(id=${book.getIsbn()})}" class="btn btn-sm btn-outline-secondary">View</a>
+                                        <a href="#" th:href="${book.getInfoUrl()}" class="btn btn-sm btn-outline-secondary" target="_blank">Web Link</a>
                                     </div>
                                 </div>
                             </div>
@@ -55,9 +52,6 @@
                 </div>
             </div>
         </div>
-        
-        
-        
     </main>
 
     <div th:insert="~{fragments/footer :: footer}"></div>
