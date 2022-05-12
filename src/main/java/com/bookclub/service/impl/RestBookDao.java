@@ -65,7 +65,7 @@ public class RestBookDao implements BookDao {
      */
     @Override
     public Book find(String key) {
-        Object doc = getBooksDoc(key); //call getBooksDoc to get make API call to get info on the boo
+        Object doc = getBooksDoc(key); //call getBooksDoc to get make API call to get info on the book
 
         List<String> isbns = JsonPath.read(doc, "$..bib_key");
         List<String> titles = JsonPath.read(doc, "$..title");

@@ -27,6 +27,7 @@ public class WishlistItem {
     @Id
 	String id;
 	
+    private String username;
 
 	/**
 	 * Default constructor
@@ -36,13 +37,16 @@ public class WishlistItem {
 	}
 	
 	/**
-	 * Constructor that takes two parameters to set class private variables.
+	 * Constructor that takes three parameters to set class private variables.
 	 * @param isbn
 	 * @param title
+	 * @param username
 	 */
-	public WishlistItem(String isbn, String title) {
+	public WishlistItem(String isbn, String title, String username ) {
 		this.isbn = isbn;
 		this.title = title;
+		System.out.println( "In WishlistItem constructor - username :" + username );
+		this.username = username;
 	}
 
 	/**
@@ -51,7 +55,7 @@ public class WishlistItem {
 	 **/
 	@Override
 	public String toString() {
-		return "WishlistItem {id=<\" + id + \">,isbn=<" + isbn + ">, title=<" + title + ">}";
+		return "WishlistItem {id=<\" + id + \">,isbn=<" + isbn + ">, title=<" + title + ">, username=<" + username + ">}";
 	}
 	
 	 /** Getter method for id of WishlistItem object
@@ -90,7 +94,22 @@ public class WishlistItem {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	
+    /**
+	 * Getter method for username of WishlistItem object
+	 * @return String
+	 **/
+	public String getUsername() {
+		System.out.println( "In WishlistItem  - get username :" + username );
+		return username;
+	}
+    /**
+     * Setter method for username of WishlistItem object
+     * @param username
+     */
+	public void setUsername(String username) {
+		System.out.println( "In WishlistItem  - in Setusername :" + username );
+		this.username = username;
+	} 
+		
 
 } //end class WishlistItem
