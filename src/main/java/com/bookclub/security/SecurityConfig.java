@@ -49,7 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		// TODO Auto-generated method stub
 		//super.configure(http);
 		http
-		    .authorizeRequests()   
+		    .authorizeRequests() 
+		        .antMatchers("/monthly-books/list", "/monthly-books/new", "/monthly-books").hasRole("ADMIN") //Restirct access to only Admin roles for specified routes
 		        .anyRequest().authenticated()   //allow access to authenticated users
 		        .and()
 		    .formLogin() 
@@ -61,7 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		        .invalidateHttpSession(true)   //invalidat3e session before after logout
 		        .permitAll();                  //permit logout page access to all authenticated users   
 		        	
-	} //end configrue() - authentication
+	} //end configure() - authentication
 	
 	
 

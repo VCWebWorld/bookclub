@@ -9,8 +9,11 @@
 
 package com.bookclub.web;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bookclub.model.Book;
+import com.bookclub.model.BookOfTheMonth;
+import com.bookclub.service.dao.BookOfTheMonthDao;
+import com.bookclub.service.impl.MongoBookOfTheMonthDao;
 import com.bookclub.service.impl.RestBookDao;
 
 /**
@@ -27,6 +33,15 @@ import com.bookclub.service.impl.RestBookDao;
 @RequestMapping("/") //maps base web requests to Spring Controller methods.
 public class HomeController
 {
+	 BookOfTheMonthDao bookOfTheMonthDao = new MongoBookOfTheMonthDao(); 
+	 /**
+	  * Setter method for bookOfTheMonthDao property variable
+	  * @param bookOfTheMonthDao
+	  */
+	 @Autowired
+	 public void setBookOfTheMonthDao(BookOfTheMonthDao bookOfTheMonthDao) {
+	     this.bookOfTheMonthDao = bookOfTheMonthDao;
+	 }
     /**
      * Method renders index (default home) page by returning its name
      * @param model
@@ -36,15 +51,31 @@ public class HomeController
     @RequestMapping(method = RequestMethod.GET) // maps base web request to showHome method.
     public String showHome(Model model, String attributeName)
     {
-    	RestBookDao bookDao = new RestBookDao(); //create MemoBookDao object
-    	List<Book> books = bookDao.list(); //map book list returned from bookDao.list() to local books list
+        
+    	Date date = new Date();
+    	Calendar cal = Calendar.getInstance();
+    	cal.setTime(date);
+    	int calMonth = cal.get(Calendar.MONTH)+ 1 ;
     	
-    	for (Book book : books) { //iterate through books list
-    		System.out.println(book.toString()); //print book details
+    	RestBookDao bookDao = new RestBookDao(); //create RestBookDao object
+    	List<BookOfTheMonth> monthlyBooks = bookOfTheMonthDao.list(Integer.toString(calMonth));//map list from bookOfTheMonthDao.list to local monthlyBooks 
+    	
+    	StringBuilder isbnBuilder = new StringBuilder();
+    	isbnBuilder.append("ISBN:");
+    	
+    	
+    	
+    	for (BookOfTheMonth monthlyBook : monthlyBooks) { //iterate through monthlyBooks list
+    		isbnBuilder.append(monthlyBook.getIsbn()).append(","); //generate isbn sting 
     	}
     	
+    	 String isbnString = isbnBuilder.toString().substring(0, isbnBuilder.toString().length() - 1);
+    	 
+    	 List<Book> books = bookDao.list(isbnString);
+    	    	
     	model.addAttribute("books" , books); //assign books variable to model attribute with key "books"
-        return "index"; // return name of the HTML page to be rendered.
+       
+    	return "index"; // return name of the HTML page to be rendered.
     } // end ShowHome()
 
     /**

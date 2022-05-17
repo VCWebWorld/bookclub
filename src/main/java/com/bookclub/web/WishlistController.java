@@ -65,9 +65,9 @@ public class WishlistController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public String addWishlistItem(@Valid WishlistItem wishlistItem, BindingResult bindingResult, Authentication authentication) {
-        System.out.println(wishlistItem.toString());
-        System.out.println("In WishlistController.java");
-        System.out.println(authentication.toString());
+       // System.out.println(wishlistItem.toString());
+       // System.out.println("In WishlistController.java");
+       //System.out.println(authentication.toString());
         wishlistItem.setUsername(authentication.getName()); // set username on wishlit item
 
         if (bindingResult.hasErrors()) { //bindingResult.hasErrors() is true

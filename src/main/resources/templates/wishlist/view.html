@@ -21,6 +21,7 @@
         <input id="id" th:field="*{id}" name="id" type="hidden" />
 
         <div class="mb-3">
+        
             <label for="isbn" class="form-label">ISBN</label>
             <input type="text" class="form-control" id="isbn" name="isbn" th:field="*{isbn}" />
             <small th:if="${#fields.hasErrors('isbn')}" style="color: red;" th:errors="*{isbn}"></small>

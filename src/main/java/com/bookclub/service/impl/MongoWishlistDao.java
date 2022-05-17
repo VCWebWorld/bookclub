@@ -98,7 +98,7 @@ public class MongoWishlistDao implements WishlistDao {
 	@Override
 	public WishlistItem find(String key) {
 		
-		return mongoTemplate.findById(key, WishlistItem.class);
+		return mongoTemplate.findById(key, WishlistItem.class); //find wishlistitem for given key
 	} //end find()
 	
 }// end MongoWishlistDao class
