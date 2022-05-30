@@ -1,3 +1,12 @@
+/*
+   Testing the web layer. Spring. (n.d.). Retrieved from 
+   https://spring.io/guides/gs/testing-web/
+   Modified By: Vani Chukkaluru
+   Created Date: 05/19/2022
+   Modified Date: 05/29/2022
+   Purpose: Adding unit tests to BookClub application 
+*/
+
 package com.bookclub;
 
 import static org.assertj.core.api.Assertions.assertThat;
